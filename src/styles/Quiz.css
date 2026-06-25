@@ -70,11 +70,6 @@
 
 .option-btn:hover {
   transform: scale(1.03);
-  background: rgba(255,255,255,0.08);
-}
-
-.option-btn.selected {
-  background: rgba(255,255,255,0.15);
 }
 
 /* result */
