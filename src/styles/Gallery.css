@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* 🌌 背景 */
+.gallery-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
+  background: radial-gradient(circle at center, #111 0%, #000 70%);
+}
+
+/* 💬 提示 */
+.gallery-hint {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  animation: fadeIn 1s ease;
+}
+
+/* 📸 照片 */
+.photo {
+  width: 170px;
+  position: absolute;
+
+  cursor: pointer;
+  border-radius: 8px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0.85);
+}
+
+.photo:hover {
+  transform: scale(1.08);
+  filter: brightness(1);
+  z-index: 10;
+}
+
+/* 🖤 modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal-content {
+  position: relative;
+  width: 60vw;
+
+  background: rgba(20,20,20,0.95);
+  border-radius: 14px;
+
+  color: white;
+
+  animation: popIn 0.25s ease;
+}
+
+/* 主區 */
+.modal-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  gap: 12px;
+}
+
+.modal-image {
+  max-width: 70%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* 文案 */
+.modal-info {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+/* 按鈕 */
+.nav-side-btn {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.3);
+
+  background: rgba(255,255,255,0.08);
+  color: white;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-side-btn:hover {
+  background: white;
+  color: black;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 999px;
+  border: none;
+
+  background: rgba(255,255,255,0.1);
+  color: white;
+
+  cursor: pointer;
+}
+
+/* 🌑 ending */
+.end-card {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle, rgba(0,0,0,0.9), black);
+  color: white;
+
+  text-align: center;
+  gap: 10px;
+
+  animation: fadeIn 1s ease;
+}
+
+.end-card .sub {
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+.end-card button {
+  margin-top: 20px;
+  padding: 12px 24px;
+
+  border-radius: 999px;
+  border: none;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.end-card button:hover {
+  transform: scale(1.05);
+}
+
+/* animations */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

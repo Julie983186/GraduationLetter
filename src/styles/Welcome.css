@@ -1,0 +1,64 @@
+.welcome-container {
+  height: 100vh;
+  background: #000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+.mail-icon {
+  font-size: 4rem;
+  animation: float 2s ease-in-out infinite;
+}
+
+.welcome-title {
+  margin-top: 20px;
+  font-size: 3rem;
+  letter-spacing: 3px;
+}
+
+.welcome-text {
+  margin-top: 30px;
+  line-height: 2;
+  color: #ccc;
+}
+
+.start-btn {
+  margin-top: 40px;
+
+  padding: 14px 32px;
+
+  background: white;
+  color: black;
+
+  border: none;
+  border-radius: 999px;
+
+  font-size: 1rem;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
