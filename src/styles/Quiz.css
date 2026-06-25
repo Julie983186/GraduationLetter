@@ -81,9 +81,6 @@
   transition: 0.25s;
 }
 
-.option-btn:hover {
-  transform: scale(1.03);
-}
 
 /* result */
 .result-box {
