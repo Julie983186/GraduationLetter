@@ -3,30 +3,21 @@ import { useRef } from "react";
 export default function BGM() {
   const audioRef = useRef(null);
 
-  const startMusic = async () => {
-    try {
-      await audioRef.current.play();
-    } catch (err) {
-      console.log("play blocked:", err);
-    }
+  const start = () => {
+    audioRef.current.play();
   };
 
   return (
     <>
       <button
-        onClick={startMusic}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          zIndex: 9999
-        }}
+        onClick={start}
+        style={{ position: "fixed", bottom: 20, right: 20 }}
       >
-        🎵 Play Music
+        🎵 Start
       </button>
 
       <audio ref={audioRef} loop>
-        <source src="/Wildfire.mp3" type="audio/mpeg" />
+        <source src="/music.mp3" type="audio/mpeg" />
       </audio>
     </>
   );
