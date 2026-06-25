@@ -1,24 +1,27 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function BGM() {
   const audioRef = useRef(null);
 
-  const start = () => {
-    audioRef.current.play();
-  };
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // 先靜音播放（瀏覽器允許）
+    audio.muted = true;
+    audio.play();
+
+    // 1 秒後解除靜音
+    const timer = setTimeout(() => {
+      audio.muted = false;
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <>
-      <button
-        onClick={start}
-        style={{ position: "fixed", bottom: 20, right: 20 }}
-      >
-        🎵 Start
-      </button>
-
-      <audio ref={audioRef} loop>
-        <source src="/Wildfire.mp3" type="audio/mpeg" />
-      </audio>
-    </>
+    <audio ref={audioRef} loop>
+      <source src="/music.mp3" type="audio/mpeg" />
+    </audio>
   );
 }
