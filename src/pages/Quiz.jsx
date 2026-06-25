@@ -15,6 +15,7 @@ export default function Quiz() {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [selectedResult, setSelectedResult] = useState(null);
 
   if (!friend) {
     return <div className="quiz-container">找不到這位朋友 😢</div>;
@@ -27,10 +28,14 @@ export default function Quiz() {
 
     setSelected(opt);
 
+    // ⭐ 把結果也記住（新增 state）
+    setSelectedResult(isCorrect);
+
     if (isCorrect) setScore((s) => s + 1);
 
     setTimeout(() => {
       setSelected(null);
+      setSelectedResult(null);
 
       if (current + 1 < friend.questions.length) {
         setCurrent((c) => c + 1);
@@ -79,9 +84,10 @@ export default function Quiz() {
               <button
                 key={i}
                 onClick={() => handleAnswer(opt)}
-                className={`option-btn ${
-                  selected === opt ? "selected" : ""
-                }`}
+                className={`option-btn 
+                  ${selected === opt && selectedResult === true ? "correct" : ""}
+                  ${selected === opt && selectedResult === false ? "wrong" : ""}
+                `}
               >
                 {opt}
               </button>

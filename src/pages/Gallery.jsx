@@ -2,6 +2,31 @@ import { useState, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { friends } from "../data/friends";
 import "../styles/Gallery.css";
+import { useState, useMemo, useEffect } from "react";
+
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (!open) return; // modal 沒開不作用
+
+    if (e.key === "ArrowLeft") {
+      prev();
+    }
+
+    if (e.key === "ArrowRight") {
+      next();
+    }
+
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [open, selectedIndex]);
 
 export default function Gallery() {
   const location = useLocation();
