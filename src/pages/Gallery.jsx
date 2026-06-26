@@ -3,30 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { friends } from "../data/friends";
 import "../styles/Gallery.css";
 
-useEffect(() => {
-  const handleKeyDown = (e) => {
-    if (!open) return; // modal 沒開不作用
-
-    if (e.key === "ArrowLeft") {
-      prev();
-    }
-
-    if (e.key === "ArrowRight") {
-      next();
-    }
-
-    if (e.key === "Escape") {
-      closeModal();
-    }
-  };
-
-  window.addEventListener("keydown", handleKeyDown);
-
-  return () => {
-    window.removeEventListener("keydown", handleKeyDown);
-  };
-}, [open, selectedIndex]);
-
 export default function Gallery() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,6 +16,10 @@ export default function Gallery() {
 
   if (!friend) return <div>找不到資料</div>;
 
+  const open = selectedIndex !== null;
+  const currentPhoto = open ? friend.photos[selectedIndex] : null;
+
+  // 📍 照片隨機排版（只在 friend 改變時重算）
   const positions = useMemo(() => {
     return friend.photos.map((_, index) => {
       const direction = index % 2 === 0 ? -1 : 1;
@@ -50,27 +30,44 @@ export default function Gallery() {
         rotate: Math.random() * 50 - 25
       };
     });
-  }, [friendKey]);
+  }, [friend]);
 
-  const open = selectedIndex !== null;
-  const currentPhoto = open ? friend.photos[selectedIndex] : null;
-
+  // ⬅️ 上一張
   const prev = () => {
     setSelectedIndex((i) =>
       i > 0 ? i - 1 : friend.photos.length - 1
     );
   };
 
+  // ➡️ 下一張
   const next = () => {
     setSelectedIndex((i) =>
       i < friend.photos.length - 1 ? i + 1 : 0
     );
   };
 
+  // ❌ 關閉 modal
   const closeModal = () => {
     setSelectedIndex(null);
     setShowEnding(true);
   };
+
+  // ⌨️ 鍵盤控制（修正版：在 component 內）
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!open) return;
+
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "Escape") closeModal();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, selectedIndex]); // prev/next/closeModal 不需要加，避免 rebind
 
   return (
     <div className="gallery-container">
@@ -82,7 +79,7 @@ export default function Gallery() {
         </div>
       )}
 
-      {/* 📸 散落照片 */}
+      {/* 📸 照片散落 */}
       {friend.photos.map((photo, index) => (
         <img
           key={index}
@@ -97,42 +94,55 @@ export default function Gallery() {
         />
       ))}
 
-      {/* 🎞 modal */}
+      {/* 🎞 Modal */}
       {open && (
         <div className="modal-overlay" onClick={closeModal}>
-
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-
-            <button className="close-btn" onClick={closeModal}>✕</button>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className="close-btn" onClick={closeModal}>
+              ✕
+            </button>
 
             <div className="modal-main">
+              <button className="nav-side-btn" onClick={prev}>
+                ←
+              </button>
 
-              <button className="nav-side-btn" onClick={prev}>←</button>
+              <img
+                src={currentPhoto?.src}
+                className="modal-image"
+                alt=""
+              />
 
-              <img src={currentPhoto.src} className="modal-image" />
-
-              <button className="nav-side-btn" onClick={next}>→</button>
-
+              <button className="nav-side-btn" onClick={next}>
+                →
+              </button>
             </div>
 
-            {(currentPhoto.title || currentPhoto.text) && (
+            {(currentPhoto?.title || currentPhoto?.text) && (
               <div className="modal-info">
-                {currentPhoto.title && <h2>{currentPhoto.title}</h2>}
-                {currentPhoto.text && <p>{currentPhoto.text}</p>}
+                {currentPhoto?.title && (
+                  <h2>{currentPhoto.title}</h2>
+                )}
+                {currentPhoto?.text && (
+                  <p>{currentPhoto.text}</p>
+                )}
               </div>
             )}
-
           </div>
         </div>
       )}
 
-      {/* 🌑 ending */}
+      {/* 🌑 Ending */}
       {showEnding && !open && (
         <div className="end-card fade-in">
-
           <h2>你已經走完這段回憶</h2>
 
-          <p>希望瀏覽過這些照片的你，能夠想起那些一起歡笑的時光</p>
+          <p>
+            希望瀏覽過這些照片的你，能夠想起那些一起歡笑的時光
+          </p>
 
           <p className="sub">
             接下來，是最後一份禮物。
@@ -145,10 +155,8 @@ export default function Gallery() {
           >
             下一步 →
           </button>
-
         </div>
       )}
-
     </div>
   );
 }
