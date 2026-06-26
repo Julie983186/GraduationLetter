@@ -1,7 +1,7 @@
+import { useState, useMemo, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { friends } from "../data/friends";
 import "../styles/Gallery.css";
-import { useState, useMemo, useEffect } from "react";
 
 useEffect(() => {
   const handleKeyDown = (e) => {
