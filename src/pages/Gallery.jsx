@@ -34,16 +34,30 @@ export default function Gallery() {
 
   // ⬅️ 上一張
   const prev = () => {
-    setSelectedIndex((i) =>
-      i > 0 ? i - 1 : friend.photos.length - 1
-    );
+    setSelectedIndex((i) => {
+      if (i === null) return 0;
+
+      if (i <= 0) {
+        closeModal(); // 👉 第一張再往左就關閉
+        return i;
+      }
+
+      return i - 1;
+    });
   };
 
   // ➡️ 下一張
   const next = () => {
-    setSelectedIndex((i) =>
-      i < friend.photos.length - 1 ? i + 1 : 0
-    );
+    setSelectedIndex((i) => {
+      if (i === null) return 0;
+
+      if (i >= friend.photos.length - 1) {
+        closeModal(); // 👉 到最後一張直接關閉
+        return i;
+      }
+
+      return i + 1;
+    });
   };
 
   // ❌ 關閉 modal
