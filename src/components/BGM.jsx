@@ -17,7 +17,7 @@ export default function BGM() {
       </button>
 
       <audio ref={audioRef} loop>
-        <source src="/Wildfire.mp3" type="audio/mpeg" />
+        <source src="/xmastree.mp3" type="audio/mpeg" />
       </audio>
     </>
   );
