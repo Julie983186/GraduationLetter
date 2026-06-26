@@ -1,4 +1,3 @@
-import { useState, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { friends } from "../data/friends";
 import "../styles/Gallery.css";
