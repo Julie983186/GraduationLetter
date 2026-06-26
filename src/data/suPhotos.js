@@ -1,6 +1,6 @@
 import { generatePhotos } from "./helpers";
 
-export const suPhotos = generatePhotos("su", 23).map((p, i) => {
+export const suPhotos = generatePhotos("su", 52).map((p, i) => {
   const id = i + 1;
 
   return {
@@ -59,6 +59,66 @@ export const suPhotos = generatePhotos("su", 23).map((p, i) => {
     ...(id === 22 && {
       title: "Subway",
       text: "一起吃的Subway 總共也沒吃過幾次"
+    }),
+
+    ...(id === 25 && {
+      title: "獨木舟大合照",
+      text: "青春洋溢在海上"
+    }),
+
+    ...(id === 28 && {
+      title: "玄武岩之下",
+      text: "這張姿勢莫名好笑"
+    }),
+
+    ...(id === 31 && {
+      title: "第一天冰店之候位中",
+      text: "超熱但吃到超飽"
+    }),
+
+    ...(id === 32 && {
+      title: "回程大合照",
+      text: "暈船前的氛圍感底片紀錄"
+    }),
+
+    ...(id === 33 && {
+      title: "Ju屋處",
+      text: "最後的小聚餐"
+    }),
+
+    ...(id === 35 && {
+      title: "唯一的整套畢業服",
+      text: "還好有拍到這個景點 雖然穿上去有夠熱"
+    }),
+
+    ...(id === 38 && {
+      title: "跳起來",
+      text: "大家很賣力ㄟ"
+    }),
+
+    ...(id === 41 && {
+      title: "慶功火鍋宴",
+      text: "雖然不知道怎麼評的 但大家辛苦了"
+    }),
+
+    ...(id === 43 && {
+      title: "A13",
+      text: "人模人樣的我們"
+    }),
+
+    ...(id === 46 && {
+      title: "拍照就愛怪動作",
+      text: "越怪我越愛"
+    }),
+
+    ...(id === 50 && {
+      title: "GPT之我的神",
+      text: "大學四年我們的唯一信奉"
+    }),
+
+    ...(id === 52 && {
+      title: "蘇英禎",
+      text: "Love you"
     }),
   };
 });

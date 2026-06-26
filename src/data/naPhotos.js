@@ -1,6 +1,6 @@
 import { generatePhotos } from "./helpers";
 
-export const naPhotos = generatePhotos("na", 31).map((p, i) => {
+export const naPhotos = generatePhotos("na", 46).map((p, i) => {
   const id = i + 1;
 
   return {
@@ -64,6 +64,41 @@ export const naPhotos = generatePhotos("na", 31).map((p, i) => {
     ...(id === 29 && {
       title: "Julie & Nathania",
       text: "回憶合照"
+    }),
+
+    ...(id === 31 && {
+      title: "冰店等待候位ing",
+      text: "第一天到澎湖真的好熱！"
+    }),
+
+    ...(id === 33 && {
+      title: "Ju屋處",
+      text: "秀玉下次要記得在哪裡聚餐歐"
+    }),
+
+    ...(id === 35 && {
+      title: "畢業服全身照",
+      text: "還好把握時機拍的這張唯一的全身畢業服"
+    }),
+
+    ...(id === 38 && {
+      title: "跳起來",
+      text: "大家好賣力地跳"
+    }),
+
+    ...(id === 41 && {
+      title: "畢專後的慶功火鍋",
+      text: "大家辛苦了"
+    }),
+
+    ...(id === 43 && {
+      title: "A13",
+      text: "人模人樣的我們"
+    }),
+
+    ...(id === 46 && {
+      title: "Nathania",
+      text: "Love you"
     }),
   };
 });

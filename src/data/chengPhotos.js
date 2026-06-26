@@ -1,6 +1,6 @@
 import { generatePhotos } from "./helpers";
 
-export const chengPhotos = generatePhotos("cheng", 25).map((p, i) => {
+export const chengPhotos = generatePhotos("cheng", 43).map((p, i) => {
   const id = i + 1;
 
   return {
@@ -34,6 +34,46 @@ export const chengPhotos = generatePhotos("cheng", 25).map((p, i) => {
     ...(id === 25 && {
       title: "與賢明的合照",
       text: "消失的領巾我給你補回來了！"
-    })
+    }),
+
+    ...(id === 28 && {
+      title: "玄武岩下的怪姿勢",
+      text: "這張拍完後看真的很好笑"
+    }),
+
+    ...(id === 30 && {
+      title: "回程合照",
+      text: "暈船前的紀錄照 氛圍感點滿"
+    }),
+
+    ...(id === 32 && {
+      title: "畢專紀錄",
+      text: "大家人模人樣的等到最後"
+    }),
+
+    ...(id === 33 && {
+      title: "著名景點-跨海大橋",
+      text: "這裡真的人多到好難拍"
+    }),
+
+    ...(id === 34 && {
+      title: "19&20",
+      text: "We are in the upsidedown"
+    }),
+    
+    ...(id === 37 && {
+      title: "A13",
+      text: "畢專團隊合照"
+    }),
+
+    ...(id === 39 && {
+      title: "火鍋慶功宴",
+      text: "雖然沒得名 但熬過畢專我們很棒！"
+    }),
+
+    ...(id === 43 && {
+      title: "張尹榛",
+      text: "Love you"
+    }),
   };
 });

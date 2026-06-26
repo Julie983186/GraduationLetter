@@ -1,6 +1,6 @@
 import { generatePhotos } from "./helpers";
 
-export const kPhotos = generatePhotos("k", 32).map((p, i) => {
+export const kPhotos = generatePhotos("k", 47).map((p, i) => {
   const id = i + 1;
 
   return {
@@ -74,6 +74,41 @@ export const kPhotos = generatePhotos("k", 32).map((p, i) => {
     ...(id === 29 && {
       title: "近距離",
       text: "可愛Kotomi"
+    }),
+
+    ...(id === 33 && {
+      title: "出發前的高鐵站合照",
+      text: "開心出遊去！"
+    }),
+
+    ...(id === 35 && {
+      title: "唯一的全身畢業服",
+      text: "還好把握時機拍到這張很繽紛好看"
+    }),
+
+    ...(id === 38 && {
+      title: "跳起來",
+      text: "大家很賣力ㄟ"
+    }),
+
+    ...(id === 39 && {
+      title: "Ju屋處",
+      text: "一起的最後小聚餐"
+    }),
+
+    ...(id === 41 && {
+      title: "畢專後的慶功宴",
+      text: "雖然沒有得名 但大家很棒！"
+    }),
+
+    ...(id === 43 && {
+      title: "A13",
+      text: "人模人樣的大合照"
+    }),
+
+    ...(id === 47 && {
+      title: "Kotomi",
+      text: "Love you"
     }),
   };
 });
